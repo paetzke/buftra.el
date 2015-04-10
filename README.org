@@ -1,1 +1,3 @@
 * buftra.el
+
+[[https://travis-ci.org/paetzke/buftra.el][https://travis-ci.org/paetzke/buftra.el.svg?branch=master]]
