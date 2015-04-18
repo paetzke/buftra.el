@@ -59,8 +59,8 @@
   (let ((tmpfile (make-temp-file executable-name nil ".py"))
         (patchbuf (get-buffer-create (format "*%s patch*" executable-name)))
         (errbuf (get-buffer-create (format "*%s Errors*" executable-name)))
-        (coding-system-for-read 'utf-8)
-        (coding-system-for-write 'utf-8))
+        (coding-system-for-read buffer-file-coding-system)
+        (coding-system-for-write buffer-file-coding-system))
     (with-current-buffer errbuf
       (setq buffer-read-only nil)
       (erase-buffer))
