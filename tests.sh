@@ -4,15 +4,14 @@
 install_emacs24() {
     sudo add-apt-repository ppa:cassou/emacs -y
     sudo apt-get update -y
-
     sudo apt-get install emacs24 -y
 }
 
 
-test_install_package() {
+test_01() {
+    echo $FUNCNAME
     emacs --no-init-file -nw \
-          buftra.el \
-          -f package-install-from-buffer \
+          --load buftra.el \
           -f kill-emacs
 }
 
@@ -20,8 +19,9 @@ test_install_package() {
 main() {
     if [ "$TRAVIS" = "true" ]; then
         install_emacs24
-        test_install_package
     fi
+
+    test_01
 }
 
 
