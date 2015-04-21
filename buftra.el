@@ -2,7 +2,7 @@
 ;; Copyright (C) 2015, Friedrich Paetzke <paetzke@fastmail.fm>
 ;; Author: Friedrich Paetzke <paetzke@fastmail.fm>
 ;; URL: https://github.com/paetzke/buftra.el
-;; Version: 0.3
+;; Version: 0.4
 
 
 (defun buftra--apply-rcs-patch (patch-buffer)
