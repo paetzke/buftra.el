@@ -36,7 +36,7 @@
                 (setq line-offset (+ line-offset len))
                 (kill-whole-line len)))
              (t
-              (error "invalid rcs patch or internal error in buftra-apply--rcs-patch")))))))))
+              (error "invalid rcs patch or internal error in buftra--apply-rcs-patch")))))))))
 
 
 (defun buftra--replace-region (filename)
