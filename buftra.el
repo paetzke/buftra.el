@@ -2,7 +2,10 @@
 ;; Copyright (C) 2015, Friedrich Paetzke <paetzke@fastmail.fm>
 ;; Author: Friedrich Paetzke <paetzke@fastmail.fm>
 ;; URL: https://github.com/paetzke/buftra.el
-;; Version: 0.4
+;; Version: 0.5
+
+;; This code is initially copied from go-mode.el (copyright the go-mode authors).
+;; See LICENSE or https://raw.githubusercontent.com/dominikh/go-mode.el/master/LICENSE
 
 
 (defun buftra--apply-rcs-patch (patch-buffer)
