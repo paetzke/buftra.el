@@ -1,8 +1,8 @@
 ;; buftra.el
-;; Copyright (C) 2015, Friedrich Paetzke <paetzke@fastmail.fm>
-;; Author: Friedrich Paetzke <paetzke@fastmail.fm>
+;; Copyright (C) 2015-2016, Friedrich Paetzke <f.paetzke@gmail.com>
+;; Author: Friedrich Paetzke <f.paetzke@gmail.com>
 ;; URL: https://github.com/paetzke/buftra.el
-;; Version: 0.5
+;; Version: 0.6
 
 ;; This code is initially copied from go-mode.el (copyright the go-mode authors).
 ;; See LICENSE or https://raw.githubusercontent.com/dominikh/go-mode.el/master/LICENSE
