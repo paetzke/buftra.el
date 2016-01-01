@@ -51,7 +51,8 @@
 (defun buftra--apply-executable-to-buffer (executable-name
                                            executable-call
                                            only-on-region
-                                           file-extension)
+                                           file-extension
+                                           ignore-return-code)
   "Formats the current buffer according to the executable"
   (when (not (executable-find executable-name))
     (error (format "%s command not found." executable-name)))
@@ -70,7 +71,8 @@
         (write-region (region-beginning) (region-end) tmpfile)
       (write-region nil nil tmpfile))
 
-    (if (funcall executable-call errbuf tmpfile)
+    (if (or (funcall executable-call errbuf tmpfile)
+            (ignore-return-code))
         (if (zerop (call-process-region (point-min) (point-max) "diff" nil
                                         patchbuf nil "-n" "-" tmpfile))
             (progn
