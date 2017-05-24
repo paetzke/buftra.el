@@ -93,5 +93,5 @@
     (pop kill-ring)
     (delete-file tmpfile)))
 
-
+(provide 'buftra)
 ;; buftra.el ends here
