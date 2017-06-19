@@ -48,6 +48,15 @@
   (insert-file-contents filename))
 
 
+(defun buftra--get-tmp-file-name ()
+  "Return the temporal filename used to save the formatted file.
+
+It uses `projectile-project-root' as relative directory to build the filename."
+  (make-temp-file
+   (concat
+    (replace-regexp-in-string "/" "-" (file-relative-name (buffer-file-name) (projectile-project-root))) "-" executable-name)
+   nil (concat "." file-extension)))
+
 (defun buftra--apply-executable-to-buffer (executable-name
                                            executable-call
                                            only-on-region
@@ -56,7 +65,7 @@
   "Formats the current buffer according to the executable"
   (when (not (executable-find executable-name))
     (error (format "%s command not found." executable-name)))
-  (let ((tmpfile (make-temp-file executable-name nil (concat "." file-extension)))
+  (let ((tmpfile (buftra--get-tmp-file-name))
         (patchbuf (get-buffer-create (format "*%s patch*" executable-name)))
         (errbuf (get-buffer-create (format "*%s Errors*" executable-name)))
         (coding-system-for-read buffer-file-coding-system)
@@ -72,12 +81,11 @@
       (write-region nil nil tmpfile))
 
     (if (or (funcall executable-call errbuf tmpfile)
-            (ignore-return-code))
+            ignore-return-code)
         (if (zerop (call-process-region (point-min) (point-max) "diff" nil
                                         patchbuf nil "-n" "-" tmpfile))
             (progn
               (kill-buffer errbuf)
-              (pop kill-ring)
               (message (format "Buffer is already %sed" executable-name)))
 
           (if only-on-region
@@ -85,13 +93,11 @@
             (buftra--apply-rcs-patch patchbuf))
 
           (kill-buffer errbuf)
-          (pop kill-ring)
           (message (format "Applied %s" executable-name)))
       (error (format "Could not apply %s. Check *%s Errors* for details"
                      executable-name executable-name)))
     (kill-buffer patchbuf)
-    (pop kill-ring)
     (delete-file tmpfile)))
 
-
+(provide 'buftra)
 ;; buftra.el ends here
