@@ -86,7 +86,6 @@ It uses `projectile-project-root' as relative directory to build the filename."
                                         patchbuf nil "-n" "-" tmpfile))
             (progn
               (kill-buffer errbuf)
-              (pop kill-ring)
               (message (format "Buffer is already %sed" executable-name)))
 
           (if only-on-region
@@ -94,12 +93,10 @@ It uses `projectile-project-root' as relative directory to build the filename."
             (buftra--apply-rcs-patch patchbuf))
 
           (kill-buffer errbuf)
-          (pop kill-ring)
           (message (format "Applied %s" executable-name)))
       (error (format "Could not apply %s. Check *%s Errors* for details"
                      executable-name executable-name)))
     (kill-buffer patchbuf)
-    (pop kill-ring)
     (delete-file tmpfile)))
 
 (provide 'buftra)
