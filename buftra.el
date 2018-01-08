@@ -8,6 +8,7 @@
 ;; See LICENSE or https://raw.githubusercontent.com/dominikh/go-mode.el/master/LICENSE
 
 
+;;;###autoload
 (defun buftra--apply-rcs-patch (patch-buffer)
   "Apply an RCS-formatted diff from PATCH-BUFFER to the current buffer."
   (let ((target-buffer (current-buffer))
@@ -43,11 +44,13 @@
               (error "invalid rcs patch or internal error in buftra--apply-rcs-patch")))))))))
 
 
+;;;###autoload
 (defun buftra--replace-region (filename)
   (delete-region (region-beginning) (region-end))
   (insert-file-contents filename))
 
 
+;;;###autoload
 (defun buftra--apply-executable-to-buffer (executable-name
                                            executable-call
                                            only-on-region
