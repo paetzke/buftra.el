@@ -95,3 +95,5 @@
 
 
 ;; buftra.el ends here
+
+(provide 'buftra)
